@@ -1,0 +1,56 @@
+block radio-button, elem radio {
+
+    default: {
+        var ctx = this.ctx,
+            elemMods = ctx.elemMods || {},
+            ctxControlAttrs = ctx.controlAttrs || {},
+
+            // value блока совпало с value в controlAttrs элемента radio
+            valuesMatched = ctxControlAttrs.value != undefined && ctxControlAttrs.value == this._value,
+
+            controlAttrs = this._.extend(ctxControlAttrs, {
+                checked: (valuesMatched || elemMods.checked) && (this._nextForChecked = true),
+                disabled: this._modsDisabled || elemMods.disabled
+            });
+
+        controlAttrs['id'] || (controlAttrs['id'] = this.generateId());
+
+        return applyNext(
+            this._controlAttrs = controlAttrs,
+            this._valuesMatched = valuesMatched,
+            this._textId = 'text' + controlAttrs.id
+        );
+    }
+
+    tag: 'label'
+
+    attrs: { 'for': this._controlAttrs['id'] }
+
+    mix: {
+        var side = this.isFirst() + this.isLast(),
+            controlAttrs = this._controlAttrs,
+            elemMods = {};
+
+        side && (elemMods.side = side > 1 ? 'both' : (this.isFirst() ? 'left' : 'right'));
+
+        this._nextForChecked && !controlAttrs.checked && (
+            this._nextForChecked = null, elemMods['next-for-pressed'] = 'yes');
+
+        this._modsDisabled && (elemMods.disabled = 'yes');
+        this._valuesMatched && (elemMods.checked = 'yes');
+
+        controlAttrs.checked && (elemMods.pressed = 'yes');
+
+        return [{ elemMods: elemMods }];
+    }
+
+    content: [
+        { elem: 'control' },
+        {
+            elem: 'text',
+            tag: 'span',
+            content: this.ctx.content
+        }
+    ]
+
+}

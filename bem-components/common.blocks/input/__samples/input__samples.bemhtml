@@ -1,0 +1,11 @@
+block input, elem samples {
+
+    tag: 'span'
+
+    attrs: {
+        role: 'list'
+    }
+
+}
+
+

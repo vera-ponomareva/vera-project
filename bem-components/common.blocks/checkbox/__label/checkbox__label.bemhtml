@@ -1,0 +1,15 @@
+block checkbox, elem label {
+
+    tag: 'label'
+
+    attrs: {
+        var a = this.ctx.attrs || {};
+
+        a['for'] = this._checkboxAttrs.id;
+
+        a['id'] = this._labelId;
+        a['aria-hidden'] = true;
+
+        return a;
+    }
+}

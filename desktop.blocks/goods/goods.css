@@ -1,0 +1,45 @@
+.goods
+{
+margin: 20px 0;
+padding: 0;
+ 
+ list-style: none;
+ text-align: justify;
+ }
+  
+  .goods__item
+  {
+  display: inline-block;
+  overflow: hidden;
+   
+   vertical-align: top;
+   text-align: left;
+    
+    width: 150px;
+    padding: 15px 30px 0 30px;
+    margin: 20px 0;
+    text-align: right;
+    }
+     
+     .goods__title
+     {
+     font-size: 20px;
+      
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+       
+       margin: 0;
+       padding: 0;
+        
+	white-space: nowrap;
+	
+	}
+	 
+	 .goods__price
+	 {
+	 position: relative;
+	 left: -500 px;
+	  
+	  display: block;
+	  }

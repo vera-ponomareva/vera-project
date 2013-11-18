@@ -1,0 +1,7 @@
+block input, elem clear {
+
+    tag: 'a'
+
+    content, !this.ctx.content: ''
+
+}

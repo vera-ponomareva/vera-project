@@ -1,0 +1,20 @@
+{
+  "author": "",
+  "name": "bem-controls",
+  "version": "1.42.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bem/bem-controls.git"
+  },
+  "engines": {
+    "node": ">=0.6"
+  },
+  "dependencies": {
+    "bem-environ": "~1.2.0"
+  },
+  "devDependencies": {
+    "bem": "~0.5.20"
+  },
+  "optionalDependencies": {},
+  "private": true
+}

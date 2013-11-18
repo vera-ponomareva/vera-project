@@ -1,0 +1,19 @@
+block checkbox, elem control {
+
+    tag: 'input'
+
+    attrs: {
+        var a = this.ctx.attrs || {};
+
+        a['id'] = this._checkboxAttrs.id;
+        a.type = 'checkbox';
+
+        this.mods.disabled && (a.disabled = 'disabled');
+        this.mods.checked == 'yes' && (a.checked = 'checked');
+
+        a['aria-labelledby'] = this._labelId;
+
+        return a;
+    }
+}
+

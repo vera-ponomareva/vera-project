@@ -1,0 +1,50 @@
+block radiobox, elem radio {
+
+    default: {
+        var ctx = this.ctx,
+            elemMods = ctx.elemMods || {},
+            ctxControlAttrs = ctx.controlAttrs || {},
+
+            // value блока совпало с value в controlAttrs элемента radio
+            valuesMatched = ctxControlAttrs.value != undefined && ctxControlAttrs.value == this._value,
+
+            controlAttrs = this._.extend(ctxControlAttrs, {
+                checked: valuesMatched || elemMods.checked,
+                disabled: this._modsDisabled || elemMods.disabled
+            });
+
+        controlAttrs['id'] || (controlAttrs['id'] = this.generateId());
+
+        return applyNext(
+            this._controlAttrs = controlAttrs,
+            this._valuesMatched = valuesMatched,
+            this._labelId = 'label' + controlAttrs.id
+        );
+    }
+
+    tag: 'label'
+
+    attrs: { 'for': this._controlAttrs['id'] }
+
+    mix: {
+        var elemMods = {};
+
+        this._modsDisabled && (elemMods.disabled = 'yes');
+        this._valuesMatched && (elemMods.checked = 'yes');
+
+        return [{ elemMods: elemMods }];
+    }
+
+    content: [
+        {
+            elem: 'box',
+            tag: 'span',
+            content: { elem: 'control' }
+        },
+        {
+            elem: 'label',
+            content: this.ctx.content
+        }
+    ]
+
+}

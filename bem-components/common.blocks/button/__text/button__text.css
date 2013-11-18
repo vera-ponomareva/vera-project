@@ -1,0 +1,8 @@
+.button__text
+{
+    position: relative;
+
+    padding: 0 1em;
+
+    pointer-events: none;
+}
